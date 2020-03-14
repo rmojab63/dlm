@@ -1211,7 +1211,7 @@ dlmFilter <- function(y, mod, debug = FALSE, simplify = FALSE)
                     good <- !whereNA
                     tmp <- La.svd(mod$V[good, good], nu=0)
                     Dv <- sqrt(tmp$d)
-                    Dv.inv <- 1/Dv; Dv.inv[abs(Dv.inv)==Inf] <- 0
+                    Dv.inv <- 1/Dv; Dv.inv[abs(Dv.inv)==Inf] <- 1/eps
                     sqrtVinvTMP <- Dv.inv * tmp$vt
                     tF.VinvTMP <- t(mod$FF[good,,drop=FALSE]) %*% crossprod(sqrtVinvTMP)
                     ## prior
